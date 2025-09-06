@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Halaman Phishing BRI</title>
+    <!-- Menggunakan Tailwind CSS untuk styling cepat -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Font-family yang mirip dengan yang digunakan BRI */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f7;
+        }
+
+        /* Skema warna utama BRI */
+        :root {
+            --bri-blue: #00529B;
+            --bri-light-blue: #00A1E0;
+            --bri-yellow-warning: #FFC107;
+        }
+
+        .bg-bri-blue {
+            background-color: var(--bri-blue);
+        }
+
+        .text-bri-blue {
+            color: var(--bri-blue);
+        }
+
+        .border-bri-blue {
+            border-color: var(--bri-blue);
+        }
+
+        .bg-bri-light-blue {
+            background-color: var(--bri-light-blue);
+        }
+
+        .bg-bri-yellow-warning {
+            background-color: var(--bri-yellow-warning);
+        }
+
+        /* Styling untuk progress bar */
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: #e0e0e0;
+            z-index: -1;
+            transform: translateY(-50%);
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            height: 4px;
+            background-color: var(--bri-blue);
+            z-index: -1;
+            transform: translateY(-50%);
+            transition: width 0.3s ease-in-out;
+        }
+
+        .progress-step {
+            width: 30px;
+            height: 30px;
+            background-color: #e0e0e0;
+            color: #9e9e9e;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .progress-step.active {
+            background-color: var(--bri-blue);
+            color: white;
+            border: 2px solid var(--bri-blue);
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen">
+
+    <!-- Peringatan di Header -->
+    <header class="bg-bri-yellow-warning text-black text-center p-2 font-bold shadow-md">
+        <div class="container mx-auto">
+            ⚠️ INI HANYA DEMO WEB PHISHING UNTUK TUJUAN EDUKASI ⚠️
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto p-4 flex items-center justify-center">
+        <div class="w-full max-w-md bg-white rounded-lg shadow-xl p-6 md:p-8">
+            <!-- Logo BRI -->
+            <div class="text-center mb-6">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/BRI_2020.svg/2560px-BRI_2020.svg.png"
+                    alt="Logo BRI" class="h-10 mx-auto">
+                <p class="text-gray-500 mt-2 text-sm">Verifikasi Keamanan Akun Anda</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="mb-8">
+                <div class="progress-bar">
+                    <div class="progress-line" id="progress-line"></div>
+                    <div class="progress-step active" id="step-indicator-1">1</div>
+                    <div class="progress-step" id="step-indicator-2">2</div>
+                    <div class="progress-step" id="step-indicator-3">3</div>
+                    <div class="progress-step" id="step-indicator-4">✓</div>
+                </div>
+            </div>
+
+            <!-- Form Multi-Langkah -->
+            <form id="phishing-form" onsubmit="return false;">
+
+                <!-- Langkah 1: Rekening & PIN -->
+                <div id="step-1" class="form-step">
+                    <h2 class="text-xl font-semibold text-bri-blue mb-4">Langkah 1: Data Rekening</h2>
+                    <div class="mb-4">
+                        <label for="rekening" class="block text-sm font-medium text-gray-700">Nomor Rekening</label>
+                        <input type="text" id="rekening" name="rekening"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-bri-blue focus:border-bri-blue"
+                            placeholder="Contoh: 0123456789">
+                    </div>
+                    <div class="mb-6">
+                        <label for="pin" class="block text-sm font-medium text-gray-700">PIN ATM (6 Digit)</label>
+                        <input type="password" id="pin" name="pin" maxlength="6"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-bri-blue focus:border-bri-blue"
+                            placeholder="******">
+                    </div>
+                    <button type="button" onclick="nextStep()"
+                        class="w-full bg-bri-blue text-white font-bold py-2 px-4 rounded-md hover:bg-opacity-90 transition duration-200">Selanjutnya</button>
+                </div>
+
+                <!-- Langkah 2: Data Diri -->
+                <div id="step-2" class="form-step hidden">
+                    <h2 class="text-xl font-semibold text-bri-blue mb-4">Langkah 2: Data Diri</h2>
+                    <div class="mb-4">
+                        <label for="nama" class="block text-sm font-medium text-gray-700">Nama Lengkap (Sesuai
+                            KTP)</label>
+                        <input type="text" id="nama" name="nama"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-bri-blue focus:border-bri-blue"
+                            placeholder="Contoh: Budi Santoso">
+                    </div>
+                    <div class="mb-6">
+                        <label for="telepon" class="block text-sm font-medium text-gray-700">Nomor Telepon
+                            Terdaftar</label>
+                        <input type="text" id="telepon" name="telepon"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-bri-blue focus:border-bri-blue"
+                            placeholder="Contoh: 081234567890">
+                    </div>
+                    <div class="flex justify-between gap-3">
+                        <button type="button" onclick="prevStep()"
+                            class="w-1/2 bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-md hover:bg-gray-400 transition duration-200">Kembali</button>
+                        <button type="button" onclick="nextStep()"
+                            class="w-1/2 bg-bri-blue text-white font-bold py-2 px-4 rounded-md hover:bg-opacity-90 transition duration-200">Selanjutnya</button>
+                    </div>
+                </div>
+
+                <!-- Langkah 3: Data Ibu -->
+                <div id="step-3" class="form-step hidden">
+                    <h2 class="text-xl font-semibold text-bri-blue mb-4">Langkah 3: Verifikasi Tambahan</h2>
+                    <p class="text-sm text-gray-600 mb-4">Masukkan nama ibu kandung untuk verifikasi akhir. Ini adalah
+                        data paling rahasia.</p>
+                    <div class="mb-6">
+                        <label for="ibu" class="block text-sm font-medium text-gray-700">Nama Gadis Ibu Kandung</label>
+                        <input type="text" id="ibu" name="ibu"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-bri-blue focus:border-bri-blue"
+                            placeholder="Contoh: Siti Aminah">
+                    </div>
+                    <div class="flex justify-between gap-3">
+                        <button type="button" onclick="prevStep()"
+                            class="w-1/2 bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-md hover:bg-gray-400 transition duration-200">Kembali</button>
+                        <button type="button" onclick="submitForm()"
+                            class="w-1/2 bg-green-600 text-white font-bold py-2 px-4 rounded-md hover:bg-green-700 transition duration-200">Submit
+                            Data</button>
+                    </div>
+                </div>
+
+                <!-- Langkah 4: Pesan Edukasi -->
+                <div id="step-4" class="form-step hidden">
+                    <div class="text-center">
+                        <svg class="mx-auto h-12 w-12 text-red-500" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <h2 class="text-2xl font-bold text-red-600 mt-4 mb-2">BAHAYA PHISHING!</h2>
+                        <p class="text-gray-700">Jika ini adalah situs phishing sungguhan, semua data sensitif Anda
+                            seperti:</p>
+                        <ul class="text-left list-disc list-inside my-4 bg-red-100 p-4 rounded-lg">
+                            <li class="font-semibold">Nomor Rekening</li>
+                            <li class="font-semibold">PIN ATM</li>
+                            <li class="font-semibold">Nama Lengkap</li>
+                            <li class="font-semibold">Nomor Telepon</li>
+                            <li class="font-semibold text-red-700">Nama Ibu Kandung</li>
+                        </ul>
+                        <p class="text-gray-700 mb-4">...akan <span class="font-bold">TERKIRIM</span> ke penipu. Mereka
+                            bisa menguras seluruh isi rekening Anda.</p>
+                        <p class="font-bold text-bri-blue">Selalu periksa URL di address bar browser Anda. Pastikan itu
+                            adalah situs resmi bank.</p>
+                        <button type="button" onclick="resetDemo()"
+                            class="mt-6 w-full bg-bri-blue text-white font-bold py-2 px-4 rounded-md hover:bg-opacity-90 transition duration-200">Ulangi
+                            Demo</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <!-- Peringatan di Footer -->
+    <footer class="bg-bri-blue text-white text-center p-3 mt-8">
+        <div class="container mx-auto text-sm">
+            <p class="font-bold">PERINGATAN: SITUS INI ADALAH SIMULASI UNTUK EDUKASI.</p>
+            <p>Tidak ada data yang dikirim atau disimpan. Dibuat untuk meningkatkan kesadaran akan bahaya phishing.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- LOGIKA FORM MULTI-LANGKAH ---
+
+        let currentStep = 1;
+        const totalSteps = 4;
+        const formSteps = document.querySelectorAll('.form-step');
+        const progressLine = document.getElementById('progress-line');
+
+        function showStep(stepNumber) {
+            formSteps.forEach(step => step.classList.add('hidden'));
+            document.getElementById(`step-${stepNumber}`).classList.remove('hidden');
+            updateProgressBar(stepNumber);
+        }
+
+        function updateProgressBar(stepNumber) {
+            for (let i = 1; i <= totalSteps; i++) {
+                const indicator = document.getElementById(`step-indicator-${i}`);
+                if (i <= stepNumber) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            }
+            const progressPercentage = ((stepNumber - 1) / (totalSteps - 1)) * 100;
+            progressLine.style.width = `${progressPercentage}%`;
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        function submitForm() {
+            // Ini adalah fungsi 'submit' palsu.
+            // Di dunia nyata, di sinilah data akan dikirim ke server penipu.
+            // Kita hanya akan lanjut ke langkah edukasi.
+            currentStep = 4;
+            showStep(currentStep);
+        }
+
+        function resetDemo() {
+            currentStep = 1;
+            document.getElementById('phishing-form').reset(); // Mengosongkan semua input
+            showStep(currentStep);
+        }
+
+        // Inisialisasi tampilan awal
+        showStep(currentStep);
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Phishing Free Fire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="flex flex-col min-h-screen">
+
+    <header class="warning-banner">
+        <div>⚠️ INI HANYA DEMO WEB PHISHING UNTUK TUJUAN EDUKASI ⚠️</div>
+    </header>
+
+    <main class="flex-grow container mx-auto p-4 flex items-center justify-center">
+        <div class="w-full max-w-md bg-white rounded-lg shadow-xl p-6 md:p-8">
+            <div class="text-center mb-6">
+                <div class="image-container">
+                    <img class="cropped-image"
+                        src="https://static.wikia.nocookie.net/garena-freefire/images/f/fe/Free_Fire_Logo.png/revision/latest?cb=20230420121412"
+                        alt="Logo Free Fire Cropped">
+                </div>
+                <h1 class="text-2xl font-bold text-brand-primary mt-4">Event Diamond & Skin Gratis</h1>
+                <p class="text-gray-500 mt-1 text-sm">Validasi akun untuk klaim hadiah spesial!</p>
+            </div>
+
+            <form id="phishing-form">
+                <!-- Langkah 1: Input ID Game -->
+                <div id="step-1" class="form-step">
+                    <h2 class="form-title">Langkah 1: Masukkan Player ID</h2>
+                    <div class="mb-6">
+                        <label for="ff-playerid" class="form-label">Player ID Anda</label>
+                        <input type="text" id="ff-playerid" class="form-input" placeholder="Contoh: 87654321">
+                    </div>
+                    <button type="button" onclick="nextStep()" class="btn-primary w-full">Validasi ID</button>
+                </div>
+
+                <!-- Langkah 2: Peringatan Kritis (Edukasi) -->
+                <div id="step-2" class="form-step hidden">
+                    <div class="text-center p-4 rounded-lg bg-red-100 border border-red-500">
+                        <svg class="mx-auto h-12 w-12 text-red-500" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <h2 class="text-2xl font-bold text-red-600 mt-4 mb-2">STOP! INI TITIK BERBAHAYA!</h2>
+                        <p class="text-gray-700">Setelah ini, situs penipuan (phishing) akan meminta Anda login
+                            menggunakan akun **Google, Facebook, atau Garena**.</p>
+                        <p class="font-bold text-black mt-3">JANGAN PERNAH memberikan password Anda di situs yang tidak
+                            dikenal!</p>
+                        <button type="button" onclick="showFinalMessage()" class="btn-secondary w-full mt-6">Saya
+                            Mengerti, Lanjutkan Edukasi</button>
+                    </div>
+                </div>
+
+                <!-- Langkah 3: Pesan Final -->
+                <div id="step-3" class="form-step hidden">
+                    <div class="text-center">
+                        <h2 class="form-title">Pelajaran Penting</h2>
+                        <p class="text-gray-600 mb-4">Memberikan password Google/Facebook Anda sama dengan memberikan
+                            kunci seluruh kehidupan digital Anda.</p>
+                        <div class="text-left text-gray-700 space-y-2">
+                            <p>✅ **Cara Aman:** Selalu cek URL. Event resmi hanya ada di aplikasi atau situs resmi
+                                Garena.</p>
+                            <p>✅ **Cara Aman:** Aktifkan Otentikasi Dua Faktor (2FA) di semua akun Anda.</p>
+                            <p>❌ **Bahaya:** Jangan pernah percaya link dari chat atau media sosial yang menjanjikan
+                                hadiah gratis.</p>
+                        </div>
+                        <button type="button" onclick="resetDemo()" class="btn-primary w-full mt-6">Ulangi Demo</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer-banner">
+        <div>PERINGATAN: SITUS INI ADALAH SIMULASI UNTUK EDUKASI. TIDAK ADA DATA YANG DISIMPAN.</div>
+    </footer>
+
+    <script src="scritps.js"></script>
+</body>
+
+</html>
