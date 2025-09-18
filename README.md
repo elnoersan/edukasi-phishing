@@ -18,13 +18,13 @@ Tujuan utama dari situs ini adalah untuk memberikan pemahaman praktis tentang ba
 Untuk memberikan gambaran nyata, kami telah menyiapkan beberapa halaman simulasi phishing. **Semua data yang Anda masukkan di halaman demo ini aman dan tidak akan pernah disimpan.**
 
 - **Perbankan:**
-  - [Demo Phishing BRI](./bri/index.html)
-  - [Demo Phishing BNI](./bni/index.html)
-  - [Demo Phishing Mandiri](./mandiri/index.html)
-  - [Demo Phishing BPD](./bpd/index.html)
+  - [Demo Phishing BRI](https://edukasi-phishing.vercel.app//bri/index.html)
+  - [Demo Phishing BNI](https://edukasi-phishing.vercel.app//bni/index.html)
+  - [Demo Phishing Mandiri](https://edukasi-phishing.vercel.app//mandiri/index.html)
+  - [Demo Phishing BPD](https://edukasi-phishing.vercel.app//bpd/index.html)
 - **Game Online:**
-  - [Demo Phishing Mobile Legends](./ml/index.html)
-  - [Demo Phishing Free Fire](./ff/index.html)
+  - [Demo Phishing Mobile Legends](https://edukasi-phishing.vercel.app//ml/index.html)
+  - [Demo Phishing Free Fire](https://edukasi-phishing.vercel.app//ff/index.html)
 
 ## Cara Mencegah Phishing
 
